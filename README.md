@@ -72,13 +72,11 @@
 
 ## ⚠ Atención
 
-Aquí tienes la traducción al español:
-
-Nosotros no brindamos soporte gratuito en caso de que hayas adquirido esta base con terceros y hayas pagado por ello.<br/>
+No brindamos soporte gratuito en caso de que hayas adquirido esta base con terceros y hayas pagado por ello.<br/>
 Este bot siempre fue y siempre será **gratuito**.<br/>
 En caso de que hayas pagado para utilizar este bot, tal como está hoy, debes saber que **fuiste engañado**.<br/>
-Nosotros no tenemos ningún vínculo con terceros y no nos responsabilizamos por ello ni brindamos soporte bajo esas condiciones.<br/>
-Los únicos recursos pagos de este bot pertenecen a https://api.spiderx.com.br, nuestra API.
+No tenemos ningún vínculo con terceros y no nos responsabilizamos por ello, tampoco brindamos soporte bajo esas condiciones.<br/>
+Los únicos recursos pagos de este bot pertenecen a https://api.spiderx.com.br, nuestra API oficial.
 
 ## Sobre este proyecto
 
