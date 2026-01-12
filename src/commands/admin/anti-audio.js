@@ -12,11 +12,12 @@ module.exports = {
   description:
     "Activa/desactiva la función de anti-audio en el grupo, eliminando el mensaje de audio si está activo.",
   commands: ["anti-audio", "anti-audios"],
-  usage: `${PREFIX}anti-audio (1/0)`,
+  usage: `${PREFIX}anti-audio (1/0)`
   /**
    * @param {CommandHandleProps} props
    * @returns {Promise<void>}
-   */ handle: async ({ remoteJid, isGroup, args, sendSuccessReply }) => {
+   */,
+  handle: async ({ remoteJid, isGroup, args, sendSuccessReply }) => {
     if (!isGroup) {
       throw new WarningError("¡Este comando solo debe usarse en grupos!");
     }
