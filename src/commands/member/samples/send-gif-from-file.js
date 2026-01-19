@@ -1,8 +1,8 @@
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
-const path = require("node:path");
+import { delay } from "baileys";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-gif-from-file",
   description: "Ejemplo de cómo enviar gifs desde archivos locales",
   commands: ["send-gif-from-file"],
@@ -30,7 +30,7 @@ module.exports = {
 
     await sendGifFromFile(
       path.join(ASSETS_DIR, "samples", "sample-video.mp4"),
-      "¡Este es un gif con subtítulo!"
+      "¡Este es un gif con subtítulo!",
     );
 
     await delay(3000);
@@ -42,7 +42,7 @@ module.exports = {
     await sendGifFromFile(
       path.join(ASSETS_DIR, "samples", "sample-video.mp4"),
       `¡Hola @${userJid.split("@")[0]}! ¡Este gif es para ti!`,
-      [userJid]
+      [userJid],
     );
 
     await delay(3000);
@@ -55,14 +55,14 @@ module.exports = {
       path.join(ASSETS_DIR, "samples", "sample-video.mp4"),
       "Gif sin respuesta/mención en el mensaje",
       null,
-      false
+      false,
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar imágenes desde archivo, usa la función sendGifFromFile(url, caption, [mentions], quoted).\n\n" +
-        "Esto es útil cuando tienes gifs almacenados localmente en el servidor."
+        "Esto es útil cuando tienes gifs almacenados localmente en el servidor.",
     );
   },
 };

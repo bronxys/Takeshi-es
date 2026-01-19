@@ -1,9 +1,8 @@
-const { addAutoResponderItem } = require(`${BASE_DIR}/utils/database`);
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError } from "../../errors/index.js";
+import { addAutoResponderItem } from "../../utils/database.js";
 
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
-
-module.exports = {
+export default {
   name: "add-auto-responder",
   description: "Agrega un término al auto-responder",
   commands: [
@@ -33,14 +32,14 @@ ${prefix}add-auto-responder término / lo que debo responder`);
 
     if (!success) {
       await sendErrorReply(
-        `¡El término "${term}" ya existe en el auto-responder!`
+        `¡El término "${term}" ya existe en el auto-responder!`,
       );
 
       return;
     }
 
     await sendSuccessReply(
-      `El término "${term}" fue agregado al auto-responder con la respuesta "${response}".`
+      `El término "${term}" fue agregado al auto-responder con la respuesta "${response}".`,
     );
   },
 };

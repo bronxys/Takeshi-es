@@ -1,7 +1,8 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { deactivateGroup } = require(`${BASE_DIR}/utils/database`);
+import { PREFIX } from "../../config.js";
+import { WarningError } from "../../errors/index.js";
+import { deactivateGroup } from "../../utils/database.js";
 
-module.exports = {
+export default {
   name: "off",
   description: "Desactiva el bot en el grupo",
   commands: ["off"],

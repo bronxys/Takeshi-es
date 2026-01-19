@@ -1,8 +1,8 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { isGroup, toUserJidOrLid } = require(`${BASE_DIR}/utils`);
-const { errorLog } = require(`${BASE_DIR}/utils/logger`);
+import { PREFIX } from "../../config.js";
+import { isGroup, toUserJidOrLid } from "../../utils/index.js";
+import { errorLog } from "../../utils/logger.js";
 
-module.exports = {
+export default {
   name: "promote",
   description: "Promueve a un usuario a administrador del grupo",
   commands: ["promote", "add-adm"],
@@ -21,13 +21,13 @@ module.exports = {
   }) => {
     if (!isGroup(remoteJid)) {
       return sendWarningReply(
-        "¡Este comando solo puede ser usado en un grupo!"
+        "¡Este comando solo puede ser usado en un grupo!",
       );
     }
 
     if (!args.length || !args[0]) {
       return sendWarningReply(
-        "Por favor, etiqueta a un usuario para promover."
+        "Por favor, etiqueta a un usuario para promover.",
       );
     }
 
@@ -39,7 +39,7 @@ module.exports = {
     } catch (error) {
       errorLog(`Error al promover usuario: ${error.message}`);
       await sendErrorReply(
-        "Ocurrió un error al intentar promover al usuario. ¡Necesito ser administrador del grupo para promover a otros usuarios!"
+        "Ocurrió un error al intentar promover al usuario. ¡Necesito ser administrador del grupo para promover a otros usuarios!",
       );
     }
   },

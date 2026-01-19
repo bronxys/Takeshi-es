@@ -1,14 +1,12 @@
-const {
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError, WarningError } from "../../errors/index.js";
+import {
   activateOnlyAdmins,
   deactivateOnlyAdmins,
   isActiveOnlyAdmins,
-} = require("../../utils/database");
+} from "../../utils/database.js";
 
-const { InvalidParameterError, WarningError } = require(`${BASE_DIR}/errors`);
-
-const { PREFIX } = require(`${BASE_DIR}/config`);
-
-module.exports = {
+export default {
   name: "only-admin",
   description: "Permite que solo administradores utilicen mis comandos.",
   commands: [
@@ -31,7 +29,7 @@ module.exports = {
   handle: async ({ args, sendReply, sendSuccessReact, remoteJid }) => {
     if (!args.length) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -40,7 +38,7 @@ module.exports = {
 
     if (!onlyAdminOn && !onlyAdminOff) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -51,7 +49,7 @@ module.exports = {
       throw new WarningError(
         `¡La función de solo administradores usar mis comandos ya está ${
           onlyAdminOn ? "activada" : "desactivada"
-        }!`
+        }!`,
       );
     }
 
@@ -66,7 +64,7 @@ module.exports = {
     const context = onlyAdminOn ? "activada" : "desactivada";
 
     await sendReply(
-      `¡Función de solo administradores usar mis comandos ${context} con éxito!`
+      `¡Función de solo administradores usar mis comandos ${context} con éxito!`,
     );
   },
 };

@@ -1,13 +1,12 @@
-const { isActiveAntiLinkGroup } = require("../../utils/database");
-
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError, WarningError } = require(`${BASE_DIR}/errors`);
-const {
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError, WarningError } from "../../errors/index.js";
+import {
   activateAntiLinkGroup,
   deactivateAntiLinkGroup,
-} = require(`${BASE_DIR}/utils/database`);
+  isActiveAntiLinkGroup,
+} from "../../utils/database.js";
 
-module.exports = {
+export default {
   name: "anti-link",
   description: "Activa/desactiva la función de anti-enlace en el grupo.",
   commands: ["anti-link"],
@@ -19,7 +18,7 @@ module.exports = {
   handle: async ({ args, sendReply, sendSuccessReact, remoteJid }) => {
     if (!args.length) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -28,7 +27,7 @@ module.exports = {
 
     if (!antiLinkOn && !antiLinkOff) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -39,7 +38,7 @@ module.exports = {
       throw new WarningError(
         `¡La función de anti-enlace ya está ${
           antiLinkOn ? "activada" : "desactivada"
-        }!`
+        }!`,
       );
     }
 

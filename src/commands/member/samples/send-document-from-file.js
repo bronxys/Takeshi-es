@@ -1,8 +1,8 @@
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
-const path = require("node:path");
+import { delay } from "baileys";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-document-from-file",
   description: "Ejemplo de cómo enviar documentos desde archivos locales",
   commands: ["send-document-from-file"],
@@ -17,7 +17,7 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "Voy a enviar diferentes tipos de documentos desde archivos locales"
+      "Voy a enviar diferentes tipos de documentos desde archivos locales",
     );
 
     await delay(3000);
@@ -25,7 +25,7 @@ module.exports = {
     await sendDocumentFromFile(
       path.join(ASSETS_DIR, "samples", "sample-document.pdf"),
       "application/pdf",
-      "documento-ejemplo.pdf"
+      "documento-ejemplo.pdf",
     );
 
     await delay(3000);
@@ -33,7 +33,7 @@ module.exports = {
     await sendDocumentFromFile(
       path.join(ASSETS_DIR, "samples", "sample-text.txt"),
       "text/plain",
-      "archivo-texto-ejemplo.txt"
+      "archivo-texto-ejemplo.txt",
     );
 
     await delay(3000);
@@ -41,32 +41,32 @@ module.exports = {
     await sendDocumentFromFile(
       path.join(ASSETS_DIR, "samples", "sample-document.txt"),
       "text/plain",
-      "otro-documento.txt"
+      "otro-documento.txt",
     );
 
     await delay(3000);
 
     await sendReply(
-      "También puedes enviar documentos con mimetype predeterminado:"
+      "También puedes enviar documentos con mimetype predeterminado:",
     );
 
     await delay(3000);
 
     await sendDocumentFromFile(
-      path.join(ASSETS_DIR, "samples", "sample-document.pdf")
+      path.join(ASSETS_DIR, "samples", "sample-document.pdf"),
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar documentos desde un archivo, usa la función sendDocumentFromFile(filePath, mimetype, fileName).\n\n" +
-        "Esto es útil cuando tienes documentos almacenados localmente en el servidor."
+        "Esto es útil cuando tienes documentos almacenados localmente en el servidor.",
     );
 
     await delay(3000);
 
     await sendReply(
-      "💡 *Consejo:* Puedes especificar el mimetype para diferentes tipos: PDF, TXT, DOC, XLS, etc."
+      "💡 *Consejo:* Puedes especificar el mimetype para diferentes tipos: PDF, TXT, DOC, XLS, etc.",
     );
   },
 };

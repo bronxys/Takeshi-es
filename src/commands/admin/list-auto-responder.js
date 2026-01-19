@@ -1,10 +1,9 @@
-const { delay } = require("baileys");
-const { readMore } = require(`${BASE_DIR}/utils`);
-const { listAutoResponderItems } = require(`${BASE_DIR}/utils/database`);
+import { delay } from "baileys";
+import { PREFIX } from "../../config.js";
+import { listAutoResponderItems } from "../../utils/database.js";
+import { readMore } from "../../utils/index.js";
 
-const { PREFIX } = require(`${BASE_DIR}/config`);
-
-module.exports = {
+export default {
   name: "list-auto-responder",
   description: "Lista todos los términos del auto-responder",
   commands: [
@@ -28,7 +27,7 @@ module.exports = {
 
     if (items.length === 0) {
       await sendSuccessReply(
-        "No hay términos registrados en el auto-responder."
+        "No hay términos registrados en el auto-responder.",
       );
       return;
     }

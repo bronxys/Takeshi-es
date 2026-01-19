@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-gif-from-url",
   description: "Ejemplo de cómo enviar gifs desde URLs externas",
   commands: ["send-gif-from-url"],
@@ -20,7 +20,7 @@ module.exports = {
     await delay(3000);
 
     await sendGifFromURL(
-      "https://api.spiderx.com.br/storage/samples/sample-video.mp4"
+      "https://api.spiderx.com.br/storage/samples/sample-video.mp4",
     );
 
     await delay(3000);
@@ -31,7 +31,7 @@ module.exports = {
 
     await sendGifFromURL(
       "https://api.spiderx.com.br/storage/samples/sample-video.mp4",
-      "¡GIF cargado desde una URL externa!"
+      "¡GIF cargado desde una URL externa!",
     );
 
     await delay(3000);
@@ -43,7 +43,7 @@ module.exports = {
     await sendGifFromURL(
       "https://api.spiderx.com.br/storage/samples/sample-video.mp4",
       `¡Hola @${userJid.split("@")[0]}! ¡Mira qué genial este gif!`,
-      [userJid]
+      [userJid],
     );
 
     await delay(3000);
@@ -56,14 +56,14 @@ module.exports = {
       "https://api.spiderx.com.br/storage/samples/sample-video.mp4",
       "GIF sin respuesta",
       undefined,
-      false
+      false,
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar imágenes desde archivo, usa la función sendGifFromURL(url, caption, [mentions], quoted).\n\n" +
-        "Esto es útil cuando tienes imágenes alojadas en línea u obtenidas de APIs."
+        "Esto es útil cuando tienes imágenes alojadas en línea u obtenidas de APIs.",
     );
 
     await delay(3000);
@@ -73,7 +73,7 @@ module.exports = {
         "• Giphy: giphy.com\n" +
         "• Tenor: tenor.com\n" +
         "• APIs de GIFs online\n\n" +
-        "💡 *Consejo:* ¡Asegúrate de que la URL apunte directamente al archivo de video!"
+        "💡 *Consejo:* ¡Asegúrate de que la URL apunte directamente al archivo de video!",
     );
   },
 };

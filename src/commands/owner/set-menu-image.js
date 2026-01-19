@@ -1,10 +1,10 @@
-const fs = require("node:fs");
-const path = require("node:path");
-const { errorLog } = require(`${BASE_DIR}/utils/logger`);
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
+import fs from "node:fs";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../config.js";
+import { InvalidParameterError } from "../../errors/index.js";
+import { errorLog } from "../../utils/logger.js";
 
-module.exports = {
+export default {
   name: "set-menu-image",
   description: "Cambia la imagen del menú del bot",
   commands: ["set-menu-image", "set-image", "set-img-menu", "set-menu-img"],
@@ -23,7 +23,7 @@ module.exports = {
   }) => {
     if (!isReply || !isImage) {
       throw new InvalidParameterError(
-        "¡Necesitas responder a un mensaje que contenga una imagen!"
+        "¡Necesitas responder a un mensaje que contenga una imagen!",
       );
     }
 
@@ -50,7 +50,7 @@ module.exports = {
     } catch (error) {
       errorLog(`Error al cambiar la imagen del menú: ${error}`);
       await sendErrorReply(
-        "Ocurrió un error al intentar cambiar la imagen del menú. Por favor, intenta de nuevo."
+        "Ocurrió un error al intentar cambiar la imagen del menú. Por favor, intenta de nuevo.",
       );
     }
   },

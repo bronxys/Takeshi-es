@@ -1,8 +1,8 @@
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
-const path = require("node:path");
+import { delay } from "baileys";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-image-from-file",
   description: "Ejemplo de cómo enviar una imagen desde un archivo local",
   commands: ["send-image-from-file"],
@@ -22,7 +22,7 @@ module.exports = {
 
     await sendImageFromFile(
       path.join(ASSETS_DIR, "samples", "sample-image.jpg"),
-      "Esta es una leyenda opcional para la imagen"
+      "Esta es una leyenda opcional para la imagen",
     );
 
     await delay(3000);
@@ -32,7 +32,7 @@ module.exports = {
     await delay(3000);
 
     await sendImageFromFile(
-      path.join(ASSETS_DIR, "samples", "sample-image.jpg")
+      path.join(ASSETS_DIR, "samples", "sample-image.jpg"),
     );
 
     await delay(3000);
@@ -43,13 +43,13 @@ module.exports = {
 
     await sendImageFromFile(
       path.join(ASSETS_DIR, "images", "takeshi-bot.png"),
-      "¡Logo de Takeshi Bot!"
+      "¡Logo de Takeshi Bot!",
     );
 
     await delay(3000);
 
     await sendReply(
-      "Ahora voy a enviar una imagen desde archivo mencionándote:"
+      "Ahora voy a enviar una imagen desde archivo mencionándote:",
     );
 
     await delay(3000);
@@ -57,14 +57,14 @@ module.exports = {
     await sendImageFromFile(
       path.join(ASSETS_DIR, "images", "takeshi-bot.png"),
       `¡Logo de Takeshi Bot para ti @${userJid.split("@")[0]}!`,
-      [userJid]
+      [userJid],
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar imágenes desde archivo, usa la función sendImageFromFile(filePath, caption, [mentions], quoted).\n\n" +
-        "Esto es útil cuando tienes imágenes almacenadas localmente en el servidor."
+        "Esto es útil cuando tienes imágenes almacenadas localmente en el servidor.",
     );
   },
 };

@@ -1,6 +1,6 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
+import { PREFIX } from "../../config.js";
 
-module.exports = {
+export default {
   name: "hide-tag",
   description: "Este comando marcará todos do grupo",
   commands: ["hide-tag", "to-tag"],

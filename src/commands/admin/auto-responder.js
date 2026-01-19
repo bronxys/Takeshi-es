@@ -1,11 +1,11 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
-const {
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError } from "../../errors/index.js";
+import {
   activateAutoResponderGroup,
   deactivateAutoResponderGroup,
-} = require(`${BASE_DIR}/utils/database`);
+} from "../../utils/database.js";
 
-module.exports = {
+export default {
   name: "auto-responder",
   description: "Activa/desactiva la función de auto-respuesta en el grupo.",
   commands: ["auto-responder"],
@@ -17,7 +17,7 @@ module.exports = {
   handle: async ({ args, sendReply, sendSuccessReact, remoteJid }) => {
     if (!args.length) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -26,7 +26,7 @@ module.exports = {
 
     if (!autoResponder && !notAutoResponder) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 

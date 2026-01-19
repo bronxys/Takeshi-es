@@ -1,12 +1,12 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError, WarningError } = require(`${BASE_DIR}/errors`);
-const {
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError, WarningError } from "../../errors/index.js";
+import {
   activateExitGroup,
   deactivateExitGroup,
   isActiveExitGroup,
-} = require(`${BASE_DIR}/utils/database`);
+} from "../../utils/database.js";
 
-module.exports = {
+export default {
   name: "exit",
   description:
     "Activa/desactiva la función de envío de mensajes cuando alguien sale del grupo.",
@@ -19,7 +19,7 @@ module.exports = {
   handle: async ({ args, sendReply, sendSuccessReact, remoteJid }) => {
     if (!args.length) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -28,7 +28,7 @@ module.exports = {
 
     if (!exit && !notExit) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -37,7 +37,7 @@ module.exports = {
 
     if (hasActive || hasInactive) {
       throw new WarningError(
-        `¡La función de salida ya está ${exit ? "activada" : "desactivada"}!`
+        `¡La función de salida ya está ${exit ? "activada" : "desactivada"}!`,
       );
     }
 
@@ -52,7 +52,7 @@ module.exports = {
     const context = exit ? "activada" : "desactivada";
 
     await sendReply(
-      `¡Función de envío de mensaje de salida ${context} con éxito!`
+      `¡Función de envío de mensaje de salida ${context} con éxito!`,
     );
   },
 };

@@ -1,10 +1,10 @@
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
-const path = require("node:path");
-const fs = require("node:fs");
-const { getBuffer } = require(`${BASE_DIR}/utils`);
+import { delay } from "baileys";
+import fs from "node:fs";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
+import { getBuffer } from "../../../utils/index.js";
 
-module.exports = {
+export default {
   name: "send-sticker-from-buffer",
   description: "Ejemplo de cómo enviar un sticker desde un buffer",
   commands: ["send-sticker-from-buffer"],
@@ -23,7 +23,7 @@ module.exports = {
     await delay(3000);
 
     const stickerBuffer = fs.readFileSync(
-      path.join(ASSETS_DIR, "samples", "sample-sticker.webp")
+      path.join(ASSETS_DIR, "samples", "sample-sticker.webp"),
     );
 
     await sendStickerFromBuffer(stickerBuffer);
@@ -31,13 +31,13 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "Ahora voy a enviar un sticker desde un buffer de URL y sin mencionar el mensaje"
+      "Ahora voy a enviar un sticker desde un buffer de URL y sin mencionar el mensaje",
     );
 
     await delay(3000);
 
     const urlBuffer = await getBuffer(
-      "https://api.spiderx.com.br/storage/samples/sample-sticker.webp"
+      "https://api.spiderx.com.br/storage/samples/sample-sticker.webp",
     );
 
     await sendStickerFromBuffer(urlBuffer, false);
@@ -45,13 +45,13 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "Para enviar stickers desde un buffer, usa la función sendStickerFromBuffer(buffer, quoted)."
+      "Para enviar stickers desde un buffer, usa la función sendStickerFromBuffer(buffer, quoted).",
     );
 
     await delay(3000);
 
     await sendReply(
-      "💡 **Consejo:** Los buffers son útiles para stickers generados dinámicamente o convertidos de otros formatos."
+      "💡 **Consejo:** Los buffers son útiles para stickers generados dinámicamente o convertidos de otros formatos.",
     );
   },
 };

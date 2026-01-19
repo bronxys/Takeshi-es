@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "group-functions",
   description: "Ejemplo de cómo usar las funciones utilitarias de grupo",
   commands: ["group-functions"],
@@ -73,7 +73,7 @@ module.exports = {
     const metadata = await getGroupMetadata();
     if (metadata) {
       const creationDate = new Date(
-        metadata.creation * 1000
+        metadata.creation * 1000,
       ).toLocaleDateString("es-ES");
       const announce = metadata.announce ? "Sí" : "No";
       const restrict = metadata.restrict ? "Sí" : "No";
@@ -84,7 +84,7 @@ module.exports = {
           `• Creado el: ${creationDate}\n` +
           `• Solo admins envían: ${announce}\n` +
           `• Aprobación para unirse: ${restrict}\n` +
-          `• Descripción: ${metadata.desc || "Sin descripción"}`
+          `• Descripción: ${metadata.desc || "Sin descripción"}`,
       );
     }
 
@@ -98,7 +98,7 @@ module.exports = {
         "• `getGroupParticipants(remoteJid?)` - Lista de participantes\n" +
         "• `getGroupAdmins(remoteJid?)` - Lista de administradores\n\n" +
         "🔧 *Parámetro opcional:*\n" +
-        "• `remoteJid` - ID del grupo/conversación (si no se proporciona, usa el grupo actual)"
+        "• `remoteJid` - ID del grupo/conversación (si no se proporciona, usa el grupo actual)",
     );
   },
 };

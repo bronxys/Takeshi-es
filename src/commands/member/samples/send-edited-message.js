@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-edited-message",
   description: "Ejemplo de cómo enviar un mensaje editado",
   commands: ["send-edited-message"],
@@ -22,7 +22,7 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "Voy a demostrar cómo enviar un mensaje de texto y después editarlo."
+      "Voy a demostrar cómo enviar un mensaje de texto y después editarlo.",
     );
 
     await delay(3000);
@@ -36,20 +36,20 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "Ahora voy a enviar un mensaje de texto encima del tuyo y editarlo."
+      "Ahora voy a enviar un mensaje de texto encima del tuyo y editarlo.",
     );
 
     await delay(3000);
 
     const messageEditedResponse = await sendReply(
-      "Este es el mensaje original."
+      "Este es el mensaje original.",
     );
 
     await delay(3000);
 
     await sendEditedReply(
       "Este es el mensaje editado. ✅",
-      messageEditedResponse
+      messageEditedResponse,
     );
 
     await delay(3000);
@@ -59,7 +59,7 @@ module.exports = {
       
 \`\`\`const messageTextResponse = await sendText("Este es el mensaje original.");
 
-await sendEditedText("Este es el mensaje editado. ✅", messageTextResponse);\`\`\``
+await sendEditedText("Este es el mensaje editado. ✅", messageTextResponse);\`\`\``,
     );
   },
 };

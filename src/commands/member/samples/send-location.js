@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-location",
   description: "Ejemplo de cómo enviar una ubicación",
   commands: ["send-location"],
@@ -32,7 +32,7 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "¡Usa la función `sendLocation(latitud, longitud)` para enviar una ubicación!"
+      "¡Usa la función `sendLocation(latitud, longitud)` para enviar una ubicación!",
     );
   },
 };

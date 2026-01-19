@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { errorLog } = require(`${BASE_DIR}/utils/logger`);
+import { PREFIX } from "../../config.js";
+import { errorLog } from "../../utils/logger.js";
 
-module.exports = {
+export default {
   name: "open",
   description: "Abre el grupo.",
   commands: ["open", "open-group"],
@@ -16,14 +16,14 @@ module.exports = {
       await sendSuccessReply("¡Grupo abierto con éxito!");
     } catch (error) {
       await sendErrorReply(
-        "¡Para abrir el grupo, necesito ser administrador del mismo!"
+        "¡Para abrir el grupo, necesito ser administrador del mismo!",
       );
       errorLog(
         `¡Ocurrió un error al abrir el grupo! Causa: ${JSON.stringify(
           error,
           null,
-          2
-        )}`
+          2,
+        )}`,
       );
     }
   },

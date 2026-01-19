@@ -1,8 +1,8 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const axios = require("axios");
-const { SPIDER_API_BASE_URL, SPIDER_API_TOKEN } = require(`${BASE_DIR}/config`);
-const { DangerError } = require(`${BASE_DIR}/errors`);
-module.exports = {
+import axios from "axios";
+import { PREFIX, SPIDER_API_BASE_URL, SPIDER_API_TOKEN } from "../../config.js";
+import { DangerError } from "../../errors/index.js";
+
+export default {
   name: "balance",
   description: "Consulta el saldo de requests restantes de la Spider X API",
   commands: ["balance"],
@@ -15,7 +15,7 @@ module.exports = {
     await sendWaitReact();
 
     const response = await axios.get(
-      `${SPIDER_API_BASE_URL}/saldo?api_key=${SPIDER_API_TOKEN}`
+      `${SPIDER_API_BASE_URL}/saldo?api_key=${SPIDER_API_TOKEN}`,
     );
 
     if (!response.data.success) {

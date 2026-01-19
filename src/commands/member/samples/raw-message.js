@@ -1,6 +1,6 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "raw-message",
   description: "Obtiene datos brutos del mensaje",
   commands: ["raw-message", "raw"],

@@ -1,10 +1,10 @@
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
-const path = require("node:path");
-const fs = require("node:fs");
-const { getBuffer } = require(`${BASE_DIR}/utils`);
+import { delay } from "baileys";
+import fs from "node:fs";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
+import { getBuffer } from "../../../utils/index.js";
 
-module.exports = {
+export default {
   name: "send-document-from-buffer",
   description: "Ejemplo de cómo enviar documentos desde buffers",
   commands: ["send-document-from-buffer"],
@@ -19,13 +19,13 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "Voy a enviar documentos desde buffers (archivo local y URL)"
+      "Voy a enviar documentos desde buffers (archivo local y URL)",
     );
 
     await delay(3000);
 
     const fileBuffer = fs.readFileSync(
-      path.join(ASSETS_DIR, "samples", "sample-document.pdf")
+      path.join(ASSETS_DIR, "samples", "sample-document.pdf"),
     );
 
     await socket.sendMessage(
@@ -35,7 +35,7 @@ module.exports = {
         mimetype: "application/pdf",
         fileName: "documento-desde-buffer-local.pdf",
       },
-      { quoted: webMessage }
+      { quoted: webMessage },
     );
 
     await delay(3000);
@@ -45,7 +45,7 @@ module.exports = {
     await delay(3000);
 
     const urlBuffer = await getBuffer(
-      "https://api.spiderx.com.br/storage/samples/sample-text.txt"
+      "https://api.spiderx.com.br/storage/samples/sample-text.txt",
     );
 
     await socket.sendMessage(
@@ -55,13 +55,13 @@ module.exports = {
         mimetype: "text/plain",
         fileName: "archivo-desde-buffer-url.txt",
       },
-      { quoted: webMessage }
+      { quoted: webMessage },
     );
 
     await delay(3000);
 
     await sendReply(
-      "También puedes enviar documentos de buffer con mimetype predeterminado:"
+      "También puedes enviar documentos de buffer con mimetype predeterminado:",
     );
 
     await delay(3000);
@@ -72,20 +72,20 @@ module.exports = {
         document: fileBuffer,
         fileName: "documento-buffer-predeterminado.pdf",
       },
-      { quoted: webMessage }
+      { quoted: webMessage },
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar documentos de buffer, usa socket.sendMessage() directamente con el buffer.\n\n" +
-        "Esto es útil cuando tienes documentos procesados en memoria o necesitas manipular el archivo antes de enviar."
+        "Esto es útil cuando tienes documentos procesados en memoria o necesitas manipular el archivo antes de enviar.",
     );
 
     await delay(3000);
 
     await sendReply(
-      "💡 *Consejo:* Los buffers son útiles para documentos generados dinámicamente o cuando necesitas procesar el archivo antes del envío."
+      "💡 *Consejo:* Los buffers son útiles para documentos generados dinámicamente o cuando necesitas procesar el archivo antes del envío.",
     );
   },
 };

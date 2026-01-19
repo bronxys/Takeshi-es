@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError } from "../../errors/index.js";
 
-module.exports = {
+export default {
   name: "delete",
   description: "Elimino mensajes",
   commands: ["delete", "d"],
@@ -13,7 +13,7 @@ module.exports = {
   handle: async ({ deleteMessage, webMessage, remoteJid }) => {
     if (!webMessage?.message?.extendedTextMessage?.contextInfo) {
       throw new InvalidParameterError(
-        "¡Debes mencionar un mensaje para eliminar!"
+        "¡Debes mencionar un mensaje para eliminar!",
       );
     }
 
@@ -22,7 +22,7 @@ module.exports = {
 
     if (!stanzaId || !participant) {
       throw new InvalidParameterError(
-        "¡Debes mencionar un mensaje para eliminar!"
+        "¡Debes mencionar un mensaje para eliminar!",
       );
     }
 

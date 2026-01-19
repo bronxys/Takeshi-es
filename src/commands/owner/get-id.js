@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { WarningError } = require(`${BASE_DIR}/errors`);
+import { PREFIX } from "../../config.js";
+import { WarningError } from "../../errors/index.js";
 
-module.exports = {
+export default {
   name: "get-id",
   description: "Devuelve el ID completo de un grupo en formato JID.",
   commands: ["get-id", "get-group-id", "id-get", "id-group"],

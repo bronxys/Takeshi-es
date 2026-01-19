@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-reaction",
   description: "Ejemplo de diferentes tipos de reacciones (emojis)",
   commands: ["send-reaction"],
@@ -19,7 +19,7 @@ module.exports = {
     sendWaitReact,
   }) => {
     await sendReply(
-      "Voy a demostrar diferentes tipos de reacciones disponibles:"
+      "Voy a demostrar diferentes tipos de reacciones disponibles:",
     );
 
     await delay(2000);
@@ -68,7 +68,7 @@ module.exports = {
         "• `sendErrorReact()` - Reacción de error (❌)\n" +
         "• `sendWarningReact()` - Reacción de advertencia (⚠️)\n" +
         "• `sendWaitReact()` - Reacción de espera (⏳)\n\n" +
-        "¡Las reacciones son útiles para dar retroalimentación rápida al usuario!"
+        "¡Las reacciones son útiles para dar retroalimentación rápida al usuario!",
     );
   },
 };

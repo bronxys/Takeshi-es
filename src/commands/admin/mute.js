@@ -4,21 +4,12 @@
  *
  * @author Dev Gui
  */
-const { toUserJid, onlyNumbers, toUserJidOrLid } = require(`${BASE_DIR}/utils`);
-const {
-  checkIfMemberIsMuted,
-  muteMember,
-} = require(`${BASE_DIR}/utils/database`);
-const {
-  PREFIX,
-  BOT_NUMBER,
-  OWNER_NUMBER,
-  OWNER_LID,
-} = require(`${BASE_DIR}/config`);
+import { BOT_NUMBER, OWNER_LID, OWNER_NUMBER, PREFIX } from "../../config.js";
+import { DangerError } from "../../errors/index.js";
+import { checkIfMemberIsMuted, muteMember } from "../../utils/database.js";
+import { onlyNumbers, toUserJid, toUserJidOrLid } from "../../utils/index.js";
 
-const { DangerError } = require(`${BASE_DIR}/errors`);
-
-module.exports = {
+export default {
   name: "mute",
   description:
     "Silencia a un usuario en el grupo (borra los mensajes del usuario automáticamente).",
@@ -42,7 +33,7 @@ module.exports = {
 
     if (!args.length && !replyJid) {
       throw new DangerError(
-        `Necesitas mencionar a un usuario o responder al mensaje del usuario que deseas silenciar.\n\nEjemplo: ${PREFIX}mute @usuario`
+        `Necesitas mencionar a un usuario o responder al mensaje del usuario que deseas silenciar.\n\nEjemplo: ${PREFIX}mute @usuario`,
       );
     }
 
@@ -63,18 +54,18 @@ module.exports = {
     const groupMetadata = await getGroupMetadata();
 
     const isUserInGroup = groupMetadata.participants.some(
-      (participant) => participant.id === userId
+      (participant) => participant.id === userId,
     );
 
     if (!isUserInGroup) {
       return sendErrorReply(
         `El usuario @${targetUserNumber} no está en este grupo.`,
-        [userId]
+        [userId],
       );
     }
 
     const isTargetAdmin = groupMetadata.participants.some(
-      (participant) => participant.id === userId && participant.admin
+      (participant) => participant.id === userId && participant.admin,
     );
 
     if (isTargetAdmin) {
@@ -84,7 +75,7 @@ module.exports = {
     if (checkIfMemberIsMuted(remoteJid, userId)) {
       return sendErrorReply(
         `El usuario @${targetUserNumber} ya está silenciado en este grupo.`,
-        [userId]
+        [userId],
       );
     }
 
@@ -92,7 +83,7 @@ module.exports = {
 
     await sendSuccessReply(
       `¡@${targetUserNumber} fue silenciado con éxito en este grupo!`,
-      [userId]
+      [userId],
     );
   },
 };

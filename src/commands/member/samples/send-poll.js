@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-poll",
   description: "Ejemplo de cómo enviar encuestas/votaciones en grupos",
   commands: ["send-poll"],
@@ -22,7 +22,7 @@ module.exports = {
         { optionName: "Opción 2" },
         { optionName: "Opción 3" },
       ],
-      true
+      true,
     );
 
     await delay(2000);
@@ -36,13 +36,13 @@ module.exports = {
         { optionName: "Ensalada 🥗" },
         { optionName: "Helado 🍦" },
       ],
-      false
+      false,
     );
 
     await delay(2000);
 
     await sendReply(
-      "Puedes crear tus propias encuestas fácilmente usando la función sendPoll(title, options, singleChoice)."
+      "Puedes crear tus propias encuestas fácilmente usando la función sendPoll(title, options, singleChoice).",
     );
   },
 };

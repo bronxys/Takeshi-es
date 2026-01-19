@@ -1,10 +1,10 @@
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
-const path = require("node:path");
-const fs = require("node:fs");
-const { getBuffer } = require(`${BASE_DIR}/utils`);
+import { delay } from "baileys";
+import fs from "node:fs";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
+import { getBuffer } from "../../../utils/index.js";
 
-module.exports = {
+export default {
   name: "send-image-from-buffer",
   description: "Ejemplo de cómo enviar una imagen desde un buffer",
   commands: ["send-image-from-buffer"],
@@ -23,12 +23,12 @@ module.exports = {
     await delay(3000);
 
     const imageBuffer = fs.readFileSync(
-      path.join(ASSETS_DIR, "samples", "sample-image.jpg")
+      path.join(ASSETS_DIR, "samples", "sample-image.jpg"),
     );
 
     await sendImageFromBuffer(
       imageBuffer,
-      "Esta es una imagen de un buffer de archivo local"
+      "Esta es una imagen de un buffer de archivo local",
     );
 
     await delay(3000);
@@ -38,12 +38,12 @@ module.exports = {
     await delay(3000);
 
     const urlBuffer = await getBuffer(
-      "https://api.spiderx.com.br/storage/samples/sample-image.jpg"
+      "https://api.spiderx.com.br/storage/samples/sample-image.jpg",
     );
 
     await sendImageFromBuffer(
       urlBuffer,
-      "Esta es una imagen de un buffer de URL"
+      "Esta es una imagen de un buffer de URL",
     );
 
     await delay(3000);
@@ -63,14 +63,14 @@ module.exports = {
     await sendImageFromBuffer(
       urlBuffer,
       `¡Aquí tienes la imagen @${userJid.split("@")[0]}!`,
-      [userJid]
+      [userJid],
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar imágenes desde buffer, usa la función sendImageFromBuffer(buffer, caption, [mentions], quoted).\n\n" +
-        "Esto es útil cuando tienes imágenes procesadas en memoria o necesitas manipular la imagen antes de enviar."
+        "Esto es útil cuando tienes imágenes procesadas en memoria o necesitas manipular la imagen antes de enviar.",
     );
   },
 };

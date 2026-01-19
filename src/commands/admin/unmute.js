@@ -4,16 +4,12 @@
  *
  * @author Dev Gui
  */
-const {
-  checkIfMemberIsMuted,
-  unmuteMember,
-} = require(`${BASE_DIR}/utils/database`);
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { toUserJidOrLid } = require(`${BASE_DIR}/utils`);
+import { PREFIX } from "../../config.js";
+import { DangerError, WarningError } from "../../errors/index.js";
+import { checkIfMemberIsMuted, unmuteMember } from "../../utils/database.js";
+import { toUserJidOrLid } from "../../utils/index.js";
 
-const { DangerError, WarningError } = require(`${BASE_DIR}/errors`);
-
-module.exports = {
+export default {
   name: "unmute",
   description: "Le quita el silencio a un miembro del grupo",
   commands: ["unmute", "desilenciar"],
@@ -34,7 +30,7 @@ module.exports = {
 
     if (!args.length && !replyJid) {
       throw new DangerError(
-        `Necesitas mencionar a un usuario para quitarle el silencio.\n\nEjemplo: ${PREFIX}unmute @usuario`
+        `Necesitas mencionar a un usuario para quitarle el silencio.\n\nEjemplo: ${PREFIX}unmute @usuario`,
       );
     }
 
@@ -47,7 +43,7 @@ module.exports = {
     unmuteMember(remoteJid, userId);
 
     await sendSuccessReply(
-      "¡Se le ha quitado el silencio al usuario con éxito!"
+      "¡Se le ha quitado el silencio al usuario con éxito!",
     );
   },
 };

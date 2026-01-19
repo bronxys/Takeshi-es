@@ -1,30 +1,27 @@
-const {
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError, WarningError } from "../../errors/index.js";
+import {
+  isActiveGroupRestriction,
   updateIsActiveGroupRestriction,
-} = require(`${BASE_DIR}/utils/database`);
+} from "../../utils/database.js";
 
-const { isActiveGroupRestriction } = require(`${BASE_DIR}/utils/database`);
-
-const { WarningError, InvalidParameterError } = require(`${BASE_DIR}/errors`);
-const { PREFIX } = require(`${BASE_DIR}/config`);
-
-module.exports = {
+export default {
   name: "anti-audio",
   description:
     "Activa/desactiva la función de anti-audio en el grupo, eliminando el mensaje de audio si está activo.",
   commands: ["anti-audio", "anti-audios"],
-  usage: `${PREFIX}anti-audio (1/0)`
+  usage: `${PREFIX}anti-audio (1/0)`,
   /**
    * @param {CommandHandleProps} props
    * @returns {Promise<void>}
-   */,
-  handle: async ({ remoteJid, isGroup, args, sendSuccessReply }) => {
+   */ handle: async ({ remoteJid, isGroup, args, sendSuccessReply }) => {
     if (!isGroup) {
       throw new WarningError("¡Este comando solo debe usarse en grupos!");
     }
 
     if (!args.length) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -33,7 +30,7 @@ module.exports = {
 
     if (!antiAudioOn && !antiAudioOff) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -47,7 +44,7 @@ module.exports = {
       throw new WarningError(
         `¡La función de anti-audio ya está ${
           antiAudioOn ? "activada" : "desactivada"
-        }!`
+        }!`,
       );
     }
 

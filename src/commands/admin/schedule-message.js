@@ -4,9 +4,9 @@
  *
  * @author Dev Gui
  */
-const { PREFIX } = require(`${BASE_DIR}/config`);
+import { PREFIX } from "../../config.js";
 
-module.exports = {
+export default {
   name: "schedule-message",
   description:
     "Programa un mensaje para ser enviado después de un tiempo definido.",
@@ -23,7 +23,7 @@ Ejemplo: ${PREFIX}schedule-message Reunión mañana / 10m`,
       return await sendErrorReply(
         `Formato incorrecto. Usa: ${PREFIX}agendar-mensaje mensaje / tiempo
         
-Ejemplo: ${PREFIX}agendar-mensaje Reunión mañana / 10m`
+Ejemplo: ${PREFIX}agendar-mensaje Reunión mañana / 10m`,
       );
     }
 
@@ -42,18 +42,18 @@ Ejemplo: ${PREFIX}agendar-mensaje Reunión mañana / 10m`
     } else {
       return await sendErrorReply(
         `Formato de tiempo inválido.
-Usa:\n• 10s para 10 segundos\n• 5m para 5 minutos\n• 2h para 2 horas`
+Usa:\n• 10s para 10 segundos\n• 5m para 5 minutos\n• 2h para 2 horas`,
       );
     }
 
     if (!message || message.trim() === "" || isNaN(timeInMs) || timeInMs <= 0) {
       return await sendErrorReply(
-        "Mensaje inválido o tiempo no especificado correctamente."
+        "Mensaje inválido o tiempo no especificado correctamente.",
       );
     }
 
     await sendSuccessReply(
-      `⌚ Mensaje programado para dentro de ${rawTime}...`
+      `⌚ Mensaje programado para dentro de ${rawTime}...`,
     );
 
     setTimeout(async () => {

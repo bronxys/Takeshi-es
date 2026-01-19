@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-quoted",
   description:
     "Ejemplo de diferentes tipos de respuestas (éxito, error, advertencia, espera)",
@@ -24,7 +24,7 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "Voy a demostrar diferentes tipos de respuestas disponibles:"
+      "Voy a demostrar diferentes tipos de respuestas disponibles:",
     );
 
     await delay(3000);
@@ -56,7 +56,7 @@ module.exports = {
         "• `sendErrorReply()` - Respuesta de error (con ❌)\n" +
         "• `sendWarningReply()` - Respuesta de advertencia (con ⚠️)\n" +
         "• `sendWaitReply()` - Respuesta de espera (con ⏳)\n\n" +
-        "¡Usa cada una según el contexto apropiado!"
+        "¡Usa cada una según el contexto apropiado!",
     );
   },
 };

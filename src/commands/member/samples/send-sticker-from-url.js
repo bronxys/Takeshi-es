@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-sticker-from-url",
   description: "Ejemplo de cómo enviar un sticker desde una URL",
   commands: ["send-sticker-from-url"],
@@ -20,20 +20,20 @@ module.exports = {
     await delay(3000);
 
     await sendStickerFromURL(
-      "https://api.spiderx.com.br/storage/samples/sample-sticker.webp"
+      "https://api.spiderx.com.br/storage/samples/sample-sticker.webp",
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar stickers desde URL, usa la función sendStickerFromURL(url, quoted).\n\n" +
-        "Esto es útil cuando tienes stickers alojados en línea u obtenidos de APIs."
+        "Esto es útil cuando tienes stickers alojados en línea u obtenidos de APIs.",
     );
 
     await delay(3000);
 
     await sendReply(
-      "💡 **Consejo:** Asegúrate de que la URL apunte a un archivo .webp válido para garantizar la compatibilidad."
+      "💡 **Consejo:** Asegúrate de que la URL apunte a un archivo .webp válido para garantizar la compatibilidad.",
     );
   },
 };

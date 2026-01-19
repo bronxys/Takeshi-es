@@ -1,7 +1,8 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { activateGroup } = require(`${BASE_DIR}/utils/database`);
+import { PREFIX } from "../../config.js";
+import { WarningError } from "../../errors/index.js";
+import { activateGroup } from "../../utils/database.js";
 
-module.exports = {
+export default {
   name: "on",
   description: "Activa el bot en el grupo",
   commands: ["on"],

@@ -1,9 +1,9 @@
-const { setPrefix } = require(`${BASE_DIR}/utils/database`);
+import { setPrefix } from "../../utils/database.js";
 
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError } from "../../errors/index.js";
 
-module.exports = {
+export default {
   name: "set-prefix",
   description: "Cambio el prefijo de uso de mis comandos",
   commands: [

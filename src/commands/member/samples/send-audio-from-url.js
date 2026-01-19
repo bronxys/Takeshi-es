@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-audio-from-url",
   description: "Ejemplo de cómo enviar un audio a través de un enlace/url",
   commands: ["send-audio-from-url"],
@@ -16,46 +16,19 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "Voy a enviar un audio desde un enlace, lo enviaré como reproducción de archivo."
-    );
-
-    await delay(3000);
-
-    await sendAudioFromURL(
-      "https://api.spiderx.com.br/storage/samples/sample-audio.mp3"
-    );
-
-    await delay(3000);
-
-    await sendReply(
-      "Ahora enviaré un audio desde un enlace, pero como si yo hubiera grabado el audio."
+      "Voy a enviar un audio desde un enlace, lo enviaré como reproducción de archivo.",
     );
 
     await delay(3000);
 
     await sendAudioFromURL(
       "https://api.spiderx.com.br/storage/samples/sample-audio.mp3",
-      true
     );
 
     await delay(3000);
 
     await sendReply(
-      "Ahora enviaré un audio desde un enlace, pero sin mencionar encima de tu mensaje."
-    );
-
-    await delay(3000);
-
-    await sendAudioFromURL(
-      "https://api.spiderx.com.br/storage/samples/sample-audio.mp3",
-      false,
-      false
-    );
-
-    await delay(3000);
-
-    await sendReply(
-      "Y finalmente, enviaré un audio desde un enlace, como si yo lo hubiera grabado, pero sin mencionar encima de tu mensaje."
+      "Ahora enviaré un audio desde un enlace, pero como si yo hubiera grabado el audio.",
     );
 
     await delay(3000);
@@ -63,7 +36,34 @@ module.exports = {
     await sendAudioFromURL(
       "https://api.spiderx.com.br/storage/samples/sample-audio.mp3",
       true,
-      false
+    );
+
+    await delay(3000);
+
+    await sendReply(
+      "Ahora enviaré un audio desde un enlace, pero sin mencionar encima de tu mensaje.",
+    );
+
+    await delay(3000);
+
+    await sendAudioFromURL(
+      "https://api.spiderx.com.br/storage/samples/sample-audio.mp3",
+      false,
+      false,
+    );
+
+    await delay(3000);
+
+    await sendReply(
+      "Y finalmente, enviaré un audio desde un enlace, como si yo lo hubiera grabado, pero sin mencionar encima de tu mensaje.",
+    );
+
+    await delay(3000);
+
+    await sendAudioFromURL(
+      "https://api.spiderx.com.br/storage/samples/sample-audio.mp3",
+      true,
+      false,
     );
   },
 };

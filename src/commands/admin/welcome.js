@@ -1,12 +1,12 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError, WarningError } = require(`${BASE_DIR}/errors`);
-const {
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError, WarningError } from "../../errors/index.js";
+import {
   activateWelcomeGroup,
   deactivateWelcomeGroup,
   isActiveWelcomeGroup,
-} = require(`${BASE_DIR}/utils/database`);
+} from "../../utils/database.js";
 
-module.exports = {
+export default {
   name: "welcome",
   description: "Activa/desactiva la función de bienvenida en el grupo.",
   commands: ["welcome", "welkom", "welkon"],
@@ -18,7 +18,7 @@ module.exports = {
   handle: async ({ args, sendReply, sendSuccessReact, remoteJid }) => {
     if (!args.length) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -27,7 +27,7 @@ module.exports = {
 
     if (!welcome && !notWelcome) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (activar o desactivar)!"
+        "¡Necesitas escribir 1 o 0 (activar o desactivar)!",
       );
     }
 
@@ -38,7 +38,7 @@ module.exports = {
       throw new WarningError(
         `¡La función de bienvenida ya está ${
           welcome ? "activada" : "desactivada"
-        }!`
+        }!`,
       );
     }
 

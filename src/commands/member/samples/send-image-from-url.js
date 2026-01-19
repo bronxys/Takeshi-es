@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-image-from-url",
   description: "Ejemplo de cómo enviar una imagen desde una URL",
   commands: ["send-image-from-url"],
@@ -21,7 +21,7 @@ module.exports = {
 
     await sendImageFromURL(
       "https://api.spiderx.com.br/storage/samples/sample-image.jpg",
-      "Esta es una leyenda para la imagen de la URL"
+      "Esta es una leyenda para la imagen de la URL",
     );
 
     await delay(3000);
@@ -31,7 +31,7 @@ module.exports = {
     await delay(3000);
 
     await sendImageFromURL(
-      "https://api.spiderx.com.br/storage/samples/sample-image.jpg"
+      "https://api.spiderx.com.br/storage/samples/sample-image.jpg",
     );
 
     await delay(3000);
@@ -43,12 +43,12 @@ module.exports = {
     await sendImageFromURL(
       "https://api.spiderx.com.br/storage/samples/sample-image.jpg",
       `¡Logo de Takeshi Bot para ti ${userJid.split("@")[0]}!`,
-      [userJid]
+      [userJid],
     );
 
     await sendReply(
       "Para enviar imágenes de URL, usa la función sendImageFromURL(url, caption, [mentions], quoted).\n\n" +
-        "Esto es útil cuando tienes imágenes alojadas en línea u obtenidas de APIs."
+        "Esto es útil cuando tienes imágenes alojadas en línea u obtenidas de APIs.",
     );
   },
 };

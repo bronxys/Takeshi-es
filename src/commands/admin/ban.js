@@ -1,13 +1,8 @@
-const {
-  PREFIX,
-  BOT_NUMBER,
-  OWNER_NUMBER,
-  ONWER_LID,
-} = require(`${BASE_DIR}/config`);
-const { DangerError, InvalidParameterError } = require(`${BASE_DIR}/errors`);
-const { toUserJid, onlyNumbers, toUserJidOrLid } = require(`${BASE_DIR}/utils`);
+import { BOT_NUMBER, ONWER_LID, OWNER_NUMBER, PREFIX } from "../../config.js";
+import { DangerError, InvalidParameterError } from "../../errors/index.js";
+import { onlyNumbers, toUserJid, toUserJidOrLid } from "../../utils/index.js";
 
-module.exports = {
+export default {
   name: "ban",
   description: "Elimino un miembro del grupo",
   commands: ["ban", "kick"],
@@ -32,7 +27,7 @@ ${PREFIX}ban (mencionando un mensaje)`,
   }) => {
     if (!args.length && !isReply) {
       throw new InvalidParameterError(
-        "¡Necesitas mencionar o marcar un miembro!"
+        "¡Necesitas mencionar o marcar un miembro!",
       );
     }
 
@@ -65,7 +60,7 @@ ${PREFIX}ban (mencionando un mensaje)`,
     await socket.groupParticipantsUpdate(
       remoteJid,
       [memberToRemoveJid],
-      "remove"
+      "remove",
     );
 
     await sendSuccessReact();

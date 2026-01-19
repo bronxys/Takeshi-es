@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
+import { delay } from "baileys";
+import { PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-contact",
   description: "Ejemplo de cómo enviar un contacto",
   commands: ["send-contact"],
@@ -24,7 +24,7 @@ module.exports = {
     await delay(3000);
 
     await sendReply(
-      "¡Usa la función `sendContact('+55 99 99999-9999', 'Nombre del contacto')` para enviar un contacto!"
+      "¡Usa la función `sendContact('+55 99 99999-9999', 'Nombre del contacto')` para enviar un contacto!",
     );
   },
 };

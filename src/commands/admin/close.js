@@ -1,7 +1,7 @@
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { errorLog } = require(`${BASE_DIR}/utils/logger`);
+import { PREFIX } from "../../config.js";
+import { errorLog } from "../../utils/logger.js";
 
-module.exports = {
+export default {
   name: "close",
   description: "Cierra el grupo.",
   commands: ["close", "close-group"],
@@ -16,14 +16,14 @@ module.exports = {
       await sendSuccessReply("¡Grupo cerrado con éxito!");
     } catch (error) {
       await sendErrorReply(
-        "¡Para cerrar el grupo, necesito ser administrador del mismo!"
+        "¡Para cerrar el grupo, necesito ser administrador del mismo!",
       );
       errorLog(
         `¡Ocurrió un error al cerrar el grupo! Causa: ${JSON.stringify(
           error,
           null,
-          2
-        )}`
+          2,
+        )}`,
       );
     }
   },

@@ -3,11 +3,11 @@
  *
  * @author Valéria
  */
-const { errorLog } = require(`${BASE_DIR}/utils/logger`);
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { DangerError } = require(`${BASE_DIR}/errors`);
+import { PREFIX } from "../../config.js";
+import { DangerError } from "../../errors/index.js";
+import { errorLog } from "../../utils/logger.js";
 
-module.exports = {
+export default {
   name: "link-group",
   description: "Obtiene el link del grupo",
   commands: ["link-group", "link-gp"],

@@ -1,10 +1,8 @@
-const { delay } = require("baileys");
-const { BOT_EMOJI } = require(`${BASE_DIR}/config`);
+import { delay } from "baileys";
+import { BOT_EMOJI, PREFIX } from "../../config.js";
+import { WarningError } from "../../errors/index.js";
 
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { WarningError } = require(`${BASE_DIR}/errors`);
-
-module.exports = {
+export default {
   name: "clear",
   description: "Limpia el historial de mensajes del grupo.",
   commands: ["clear", "clear-chat"],

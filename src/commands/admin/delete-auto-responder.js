@@ -1,12 +1,8 @@
-const {
-  removeAutoResponderItemByKey,
-  getAutoResponderItemByKey,
-} = require(`${BASE_DIR}/utils/database`);
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError } from "../../errors/index.js";
+import { removeAutoResponderItemByKey } from "../../utils/database.js";
 
-const { PREFIX } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
-
-module.exports = {
+export default {
   name: "delete-auto-responder",
   description: "Elimina un término del auto-responder por ID",
   commands: [
@@ -48,14 +44,14 @@ Usa ${prefix}list-auto-responder para ver todos los IDs`);
 
     if (!success) {
       await sendErrorReply(
-        `No fue posible eliminar el término con el ID ${id}. ¡Puede que no exista o ya haya sido eliminado!`
+        `No fue posible eliminar el término con el ID ${id}. ¡Puede que no exista o ya haya sido eliminado!`,
       );
 
       return;
     }
 
     await sendSuccessReply(
-      `¡El término con el ID ${id} fue eliminado del auto-responder con éxito!`
+      `¡El término con el ID ${id} fue eliminado del auto-responder con éxito!`,
     );
   },
 };

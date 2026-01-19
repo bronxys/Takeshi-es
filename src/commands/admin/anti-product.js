@@ -1,13 +1,11 @@
-const {
+import { PREFIX } from "../../config.js";
+import { InvalidParameterError, WarningError } from "../../errors/index.js";
+import {
+  isActiveGroupRestriction,
   updateIsActiveGroupRestriction,
-} = require(`${BASE_DIR}/utils/database`);
+} from "../../utils/database.js";
 
-const { isActiveGroupRestriction } = require(`${BASE_DIR}/utils/database`);
-
-const { InvalidParameterError, WarningError } = require(`${BASE_DIR}/errors`);
-const { PREFIX } = require(`${BASE_DIR}/config`);
-
-module.exports = {
+export default {
   name: "anti-product",
   description:
     "Activa/desactiva la función anti-producto en el grupo, eliminando el mensaje del producto si está activo.",
@@ -24,7 +22,7 @@ module.exports = {
 
     if (!args.length) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (encender o apagar)!"
+        "¡Necesitas escribir 1 o 0 (encender o apagar)!",
       );
     }
 
@@ -33,7 +31,7 @@ module.exports = {
 
     if (!antiProductOn && !antiProductOff) {
       throw new InvalidParameterError(
-        "¡Necesitas escribir 1 o 0 (encender o apagar)!"
+        "¡Necesitas escribir 1 o 0 (encender o apagar)!",
       );
     }
 
@@ -47,7 +45,7 @@ module.exports = {
       throw new WarningError(
         `¡La función anti-producto ya está ${
           antiProductOn ? "activada" : "desactivada"
-        }!`
+        }!`,
       );
     }
 

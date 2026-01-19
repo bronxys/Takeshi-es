@@ -1,8 +1,8 @@
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
-const path = require("node:path");
+import { delay } from "baileys";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
 
-module.exports = {
+export default {
   name: "send-video-from-file",
   description: "Ejemplo de cómo enviar un video desde un archivo local",
   commands: ["send-video-from-file"],
@@ -22,7 +22,7 @@ module.exports = {
 
     await sendVideoFromFile(
       path.join(ASSETS_DIR, "samples", "sample-video.mp4"),
-      "Este es un video de ejemplo con leyenda"
+      "Este es un video de ejemplo con leyenda",
     );
 
     await delay(3000);
@@ -32,20 +32,20 @@ module.exports = {
     await delay(3000);
 
     await sendVideoFromFile(
-      path.join(ASSETS_DIR, "samples", "sample-video.mp4")
+      path.join(ASSETS_DIR, "samples", "sample-video.mp4"),
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar videos desde archivo, usa la función sendVideoFromFile(filePath, caption, [mentions], quoted).\n\n" +
-        "Esto es útil cuando tienes videos almacenados localmente en el servidor."
+        "Esto es útil cuando tienes videos almacenados localmente en el servidor.",
     );
 
     await delay(3000);
 
     await sendReply(
-      "💡 **Consejo:** Los formatos compatibles incluyen MP4, AVI, MOV, etc. WhatsApp los convierte automáticamente si es necesario."
+      "💡 **Consejo:** Los formatos compatibles incluyen MP4, AVI, MOV, etc. WhatsApp los convierte automáticamente si es necesario.",
     );
   },
 };

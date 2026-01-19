@@ -1,11 +1,11 @@
-const fs = require("node:fs");
-const path = require("node:path");
-const { DEFAULT_PREFIX, TEMP_DIR } = require(`${BASE_DIR}/config`);
-const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
-const ffmpeg = require("fluent-ffmpeg");
-const { getRandomName } = require(`${BASE_DIR}/utils`);
+import ffmpeg from "fluent-ffmpeg";
+import fs from "node:fs";
+import path from "node:path";
+import { DEFAULT_PREFIX, TEMP_DIR } from "../../config.js";
+import { InvalidParameterError } from "../../errors/index.js";
+import { getRandomName } from "../../utils/index.js";
 
-module.exports = {
+export default {
   name: "reveal",
   description: "Revela una imagen o video con vista única",
   commands: ["reveal", "rv"],
@@ -27,7 +27,7 @@ module.exports = {
   }) => {
     if (!isImage && !isVideo) {
       throw new InvalidParameterError(
-        "¡Necesitas etiquetar una imagen/video o responder a una imagen/video para revelarla!"
+        "¡Necesitas etiquetar una imagen/video o responder a una imagen/video para revelarla!",
       );
     }
 
@@ -39,7 +39,7 @@ module.exports = {
 
     const outputPath = path.resolve(
       TEMP_DIR,
-      `${getRandomName()}.${isImage ? "jpg" : "mp4"}`
+      `${getRandomName()}.${isImage ? "jpg" : "mp4"}`,
     );
 
     let inputPath;
@@ -83,7 +83,7 @@ module.exports = {
     } catch (error) {
       console.error("Error general:", error);
       throw new Error(
-        "Ocurrió un error al procesar el medio. Intenta de nuevo."
+        "Ocurrió un error al procesar el medio. Intenta de nuevo.",
       );
     } finally {
       const cleanFile = (filePath) => {

@@ -1,10 +1,10 @@
-const { PREFIX, ASSETS_DIR } = require(`${BASE_DIR}/config`);
-const { delay } = require("baileys");
-const path = require("node:path");
-const fs = require("node:fs");
-const { getBuffer } = require(`${BASE_DIR}/utils`);
+import { delay } from "baileys";
+import fs from "node:fs";
+import path from "node:path";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
+import { getBuffer } from "../../../utils/index.js";
 
-module.exports = {
+export default {
   name: "send-gif-from-buffer",
   description: "Ejemplo de cómo enviar gifs desde buffers",
   commands: ["send-gif-from-buffer"],
@@ -23,7 +23,7 @@ module.exports = {
     await delay(3000);
 
     const fileBuffer = fs.readFileSync(
-      path.join(ASSETS_DIR, "samples", "sample-video.mp4")
+      path.join(ASSETS_DIR, "samples", "sample-video.mp4"),
     );
 
     await sendGifFromBuffer(fileBuffer);
@@ -35,7 +35,7 @@ module.exports = {
     await delay(3000);
 
     const urlBuffer = await getBuffer(
-      "https://api.spiderx.com.br/storage/samples/sample-video.mp4"
+      "https://api.spiderx.com.br/storage/samples/sample-video.mp4",
     );
 
     await sendGifFromBuffer(urlBuffer, "¡GIF cargado de URL a buffer!");
@@ -49,7 +49,7 @@ module.exports = {
     await sendGifFromBuffer(
       fileBuffer,
       `@${userJid.split("@")[0]} ¡este gif provino de un buffer!`,
-      [userJid]
+      [userJid],
     );
 
     await delay(3000);
@@ -62,14 +62,14 @@ module.exports = {
       fileBuffer,
       "GIF de buffer sin respuesta",
       null,
-      false
+      false,
     );
 
     await delay(3000);
 
     await sendReply(
       "Para enviar imágenes desde archivo, usa la función sendGifFromBuffer(buffer, caption, [mentions], quoted).\n\n" +
-        "¡Esto es útil para gifs generados dinámicamente o convertidos de otros formatos!"
+        "¡Esto es útil para gifs generados dinámicamente o convertidos de otros formatos!",
     );
 
     await delay(3000);
@@ -80,7 +80,7 @@ module.exports = {
         "• Conversión de formatos\n" +
         "• Manipulación de datos\n" +
         "• Caché temporal\n\n" +
-        "💡 *Consejo:* ¡Los buffers son útiles para GIFs generados dinámicamente o convertidos!"
+        "💡 *Consejo:* ¡Los buffers son útiles para GIFs generados dinámicamente o convertidos!",
     );
   },
 };
