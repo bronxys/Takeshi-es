@@ -1,47 +1,51 @@
 import path from "node:path";
-import { ASSETS_DIR, PREFIX } from "../../config.js";
-import { InvalidParameterError } from "../../errors/index.js";
-import { onlyNumbers, toUserJidOrLid } from "../../utils/index.js";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
+import { InvalidParameterError } from "../../../errors/index.js";
+import { onlyNumbers } from "../../../utils/index.js";
 
 export default {
   name: "luchar",
-  description: "¡Lucha uno a uno o golpea a tu enemigo!",
-  commands: ["luchar", "lucha"],
-  usage: `${PREFIX}luchar @usuario`,
+  description: "¡Lucha mano a mano o golpea a tu enemigo!",
+  commands: ["luchar", "luta"],
+  usage: `${PREFIX}lutar @usuario`,
   /**
    * @param {CommandHandleProps} props
-   * @returns {Promise<void>}
    */
   handle: async ({
     sendGifFromFile,
     sendErrorReply,
-    userJid,
-    replyJid,
+    userLid,
+    replyLid,
     args,
     isReply,
   }) => {
     if (!args.length && !isReply) {
       throw new InvalidParameterError(
-        "¡Necesitas mencionar o marcar a un miembro!"
+        "¡Necesitas mencionar o marcar a un miembro!",
       );
     }
 
-    const targetJid = isReply ? replyJid : toUserJidOrLid(args[0]);
+    const targetLid = isReply
+      ? replyLid
+      : args[0]
+        ? `${onlyNumbers(args[0])}@lid`
+        : null;
 
-    if (!targetJid) {
+    if (!targetLid) {
       await sendErrorReply(
-        "Debes mencionar a un usuario o responder a un mensaje para luchar."
+        "Necesitas mencionar a un usuario o responder a un mensaje para luchar.",
       );
+
       return;
     }
 
-    const userNumber = onlyNumbers(userJid);
-    const targetNumber = onlyNumbers(targetJid);
+    const userNumber = onlyNumbers(userLid);
+    const targetNumber = onlyNumbers(targetLid);
 
     await sendGifFromFile(
       path.resolve(ASSETS_DIR, "images", "funny", "sung-jin-woo-jinwoo.mp4"),
-      `@${userNumber} tuvo una lucha intensa con @${targetNumber}!`,
-      [userJid, targetJid]
+      `@${userNumber} ¡tuvo una lucha intensa con @${targetNumber}!`,
+      [userLid, targetLid],
     );
   },
 };

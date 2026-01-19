@@ -1,15 +1,14 @@
 import { PREFIX } from "../../config.js";
-import { isGroup, toUserJidOrLid } from "../../utils/index.js";
+import { isGroup, onlyNumbers } from "../../utils/index.js";
 import { errorLog } from "../../utils/logger.js";
 
 export default {
-  name: "demote",
-  description: "Degrada a un administrador a miembro común",
-  commands: ["demote"],
-  usage: `${PREFIX}demote @usuario`,
+  name: "rebaixar",
+  description: "Degrada a um administrador a miembro común",
+  commands: ["rebaixar", "rebaixa", "demote"],
+  usage: `${PREFIX}rebaixar @usuario`,
   /**
    * @param {CommandHandleProps} props
-   * @returns {Promise<void>}
    */
   handle: async ({
     args,
@@ -21,23 +20,20 @@ export default {
   }) => {
     if (!isGroup(remoteJid)) {
       return sendWarningReply(
-        "¡Este comando solo puede ser usado en un grupo!",
+        "¡Este comando solo puede ser utilizado en grupos!",
       );
     }
-
     if (!args.length || !args[0]) {
       return sendWarningReply(
-        "Por favor, etiqueta a un administrador para degradarlo.",
+        "Por favor, mencione a un administrador para degradar.",
       );
     }
-
-    const userId = toUserJidOrLid(args[0]);
-
+    const userId = args[0] ? `${onlyNumbers(args[0])}@lid` : null;
     try {
       await socket.groupParticipantsUpdate(remoteJid, [userId], "demote");
       await sendSuccessReply("¡Usuario degradado con éxito!");
     } catch (error) {
-      errorLog(`Error al degradar administrador: ${error.message}`);
+      errorLog(`Erro ao rebaixar administrador: ${error.message}`);
       await sendErrorReply(
         "Ocurrió un error al intentar degradar al usuario. ¡Necesito ser administrador del grupo para degradar a otros administradores!",
       );

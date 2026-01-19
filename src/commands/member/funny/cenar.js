@@ -1,47 +1,51 @@
 import path from "node:path";
-import { ASSETS_DIR, PREFIX } from "../../config.js";
-import { InvalidParameterError } from "../../errors/index.js";
-import { onlyNumbers, toUserJidOrLid } from "../../utils/index.js";
+import { ASSETS_DIR, PREFIX } from "../../../config.js";
+import { InvalidParameterError } from "../../../errors/index.js";
+import { onlyNumbers } from "../../../utils/index.js";
 
 export default {
   name: "cenar",
   description: "Invita a un usuario a cenar.",
-  commands: ["cenar", "cena"],
-  usage: `${PREFIX}cenar @usuario`,
+  commands: ["cenar", "janta"],
+  usage: `${PREFIX}jantar @usuario`,
   /**
    * @param {CommandHandleProps} props
-   * @returns {Promise<void>}
    */
   handle: async ({
     sendGifFromFile,
     sendErrorReply,
-    userJid,
-    replyJid,
+    userLid,
+    replyLid,
     args,
     isReply,
   }) => {
     if (!args.length && !isReply) {
       throw new InvalidParameterError(
-        "¡Necesitas mencionar o marcar a un miembro!"
+        "¡Necesitas mencionar o marcar a un miembro!",
       );
     }
 
-    const targetJid = isReply ? replyJid : toUserJidOrLid(args[0]);
+    const targetLid = isReply
+      ? replyLid
+      : args[0]
+        ? `${onlyNumbers(args[0])}@lid`
+        : null;
 
-    if (!targetJid) {
+    if (!targetLid) {
       await sendErrorReply(
-        "Debes mencionar a un usuario o responder a un mensaje para cenar."
+        "Necesitas mencionar a un usuario o responder a un mensaje para cenar.",
       );
+
       return;
     }
 
-    const userNumber = onlyNumbers(userJid);
-    const targetNumber = onlyNumbers(targetJid);
+    const userNumber = onlyNumbers(userLid);
+    const targetNumber = onlyNumbers(targetLid);
 
     await sendGifFromFile(
       path.resolve(ASSETS_DIR, "images", "funny", "gintama-gintoki.mp4"),
-      `@${userNumber} fue a cenar con @${targetNumber}!`,
-      [userJid, targetJid]
+      `@${userNumber} ¡fue a una cena con @${targetNumber}!`,
+      [userLid, targetLid],
     );
   },
 };
