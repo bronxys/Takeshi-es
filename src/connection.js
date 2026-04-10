@@ -16,6 +16,7 @@
  */
 import makeWASocket, {
   DisconnectReason,
+  fetchLatestBaileysVersion,
   isJidBroadcast,
   isJidNewsletter,
   isJidStatusBroadcast,
@@ -47,7 +48,7 @@ if (!fs.existsSync(TEMP_DIR)) {
 
 const logger = pino(
   { timestamp: () => `,"time":"${new Date().toJSON()}"` },
-  pino.destination(path.join(TEMP_DIR, "wa-logs.txt"))
+  pino.destination(path.join(TEMP_DIR, "wa-logs.txt")),
 );
 
 logger.level = "error";
@@ -60,13 +61,14 @@ export async function connect() {
     "..",
     "assets",
     "auth",
-    "baileys"
+    "baileys",
   );
 
   const { state, saveCreds } = await useMultiFileAuthState(baileysFolder);
+  const { version } = await fetchLatestBaileysVersion();
 
   const socket = makeWASocket({
-    version: WAWEB_VERSION,
+    version,
     logger,
     defaultQueryTimeoutMs: undefined,
     retryRequestDelayMs: 5000,
@@ -87,16 +89,16 @@ export async function connect() {
     warningLog("¡Credenciales aún no configuradas!");
 
     infoLog(
-      'Ingrese el número de teléfono del bot (ejemplo: "5511920202020"):'
+      'Ingrese el número de teléfono del bot (ejemplo: "5511920202020"):',
     );
 
     const phoneNumber = await question(
-      "Ingrese el número de teléfono del bot: "
+      "Ingrese el número de teléfono del bot: ",
     );
 
     if (!phoneNumber) {
       errorLog(
-        '¡Número de teléfono inválido! Intente nuevamente con el comando "npm start".'
+        '¡Número de teléfono inválido! Intente nuevamente con el comando "npm start".',
       );
 
       process.exit(1);
@@ -123,7 +125,7 @@ export async function connect() {
         if (badMacHandler.handleError(error, "connection.update")) {
           if (badMacHandler.hasReachedLimit()) {
             warningLog(
-              "Límite de errores Bad MAC alcanzado. Limpiando archivos de sesión problemáticos..."
+              "Límite de errores Bad MAC alcanzado. Limpiando archivos de sesión problemáticos...",
             );
             badMacHandler.clearProblematicSessionFiles();
             badMacHandler.resetErrorCount();
@@ -146,7 +148,7 @@ export async function connect() {
             if (badMacHandler.handleError(sessionError, "badSession")) {
               if (badMacHandler.hasReachedLimit()) {
                 warningLog(
-                  "Límite de errores de sesión alcanzado. Limpiando archivos de sesión..."
+                  "Límite de errores de sesión alcanzado. Limpiando archivos de sesión...",
                 );
                 badMacHandler.clearProblematicSessionFiles();
                 badMacHandler.resetErrorCount();
@@ -185,7 +187,7 @@ export async function connect() {
       successLog(
         `✅ ¡Estoy listo para usar! 
 Verifica el prefijo escribiendo la palabra "prefixo" en WhatsApp. 
-El prefijo por defecto definido en config.js es ${PREFIX}`
+El prefijo por defecto definido en config.js es ${PREFIX}`,
       );
       badMacHandler.resetErrorCount();
     } else {
