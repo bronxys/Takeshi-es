@@ -158,8 +158,6 @@ El bot tiene recuperación automática para errores "Bad MAC" de WhatsApp vía `
 
 ```bash
 npm start           # Desarrollo con flag --watch
-npm run test        # Ejecuta src/test.js
-npm run test:all    # Ejecuta todos los tests de Node.js
 bash update.sh      # Descarga últimos cambios de git
 bash reset-qr-auth.sh # Borra archivos de sesión y reconecta
 

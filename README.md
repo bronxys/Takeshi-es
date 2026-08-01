@@ -2,13 +2,13 @@
 
 ![Takeshi Bot](./assets/images/takeshi-bot.png)
 
-[![Version](https://img.shields.io/badge/Versión-7.4.0-blue)](https://github.com/guiireal/takeshi-bot)
+[![Version](https://img.shields.io/badge/Versión-8.11.0-blue)](https://github.com/bronxys/Takeshi-es)
 
 > Base para bots de WhatsApp multifuncional con diversos comandos listos.
 
-[![Node.js](https://img.shields.io/badge/Node.js-22.22-green?logo=node.js)](https://nodejs.org/en)
+[![Node.js](https://img.shields.io/badge/Node.js-24-green?logo=node.js)](https://nodejs.org/en)
 [![Axios](https://img.shields.io/badge/Axios-1.13-blue?logo=axios)](https://axios-http.com/ptbr/docs/intro)
-[![Baileys](https://img.shields.io/badge/Baileys-7.0.0.9-purple?logo=whatsapp)](https://github.com/WhiskeySockets/Baileys)
+[![Baileys](https://img.shields.io/badge/Baileys-7.0.0--rc.14-purple?logo=whatsapp)](https://github.com/WhiskeySockets/Baileys)
 [![FFMPEG](https://img.shields.io/badge/FFMPEG-Latest-orange?logo=ffmpeg)](https://ffmpeg.org/)
 [![Spider X API](https://img.shields.io/badge/Spider_X-API-green?logo=api)](https://api.spiderx.com.br)
 
@@ -25,7 +25,8 @@
 3. [📖 Sobre el Proyecto](#sobre-este-proyecto)
 4. [🚀 Instalación](#instalación-en-termux)
     - [En Termux](#instalación-en-termux)
-    - [En las principales hosts de Brasil](#instalación-en-las-principales-hosts-de-brasil)
+    - [En Bronxys](#instalación-en-bronxys)
+    - [En Windows](#instalación-en-windows)
     - [En VPS (Debian/Ubuntu)](#instalación-en-vps-debianubuntu)
 5. [📊 Diagrama de conexión](#diagrama-de-conexión)
 6. [⚙️ Algunos comandos necesitan API](#algunos-comandos-necesitan-api)
@@ -41,11 +42,10 @@
 12. [🛠️ Implementación técnica de los ejemplos](#implementación-técnica-de-los-ejemplos)
 13. [📁 Estructura de carpetas](#estructura-de-carpetas)
 14. [🔄 Actualizar el bot](#actualizar-el-bot)
-15. [🧪 Tests](#tests)
-16. [❓ Errores comunes](#errores-comunes)
-17. [📺 Suscríbete al canal](#suscribete-al-canal)
-18. [🤝 Contribuyendo con el proyecto](#contribuyendo-con-el-proyecto)
-19. [⚖️ Licencia y Disclaimer](#licencia)
+15. [❓ Errores comunes](#errores-comunes)
+16. [📺 Suscríbete al canal](#suscribete-al-canal)
+17. [🤝 Contribuyendo con el proyecto](#contribuyendo-con-el-proyecto)
+18. [⚖️ Licencia y Disclaimer](#licencia)
 
 ## 🌐 Accede al Takeshi Bot en otros idiomas
 
@@ -65,7 +65,7 @@ Este proyecto no posee ningún vínculo oficial con WhatsApp. Fue desarrollado d
 
 No nos responsabilizamos por ningún uso indebido de este bot. Es de responsabilidad exclusiva del usuario garantizar que su utilización esté en conformidad con los términos de uso de WhatsApp y la legislación vigente.
 
-## Instalación en Termux
+## Instalación en Termux (nuevo vídeo tutorial: [https://youtu.be/-yjn1Xe3ltg](https://youtu.be/-yjn1Xe3ltg))
 
 1 - Abre Termux y ejecuta los comandos abajo.
 _No tienes Termux? [Haz clic aquí y descarga la última versión](https://www.mediafire.com/file/wxpygdb9bcb5npb/Termux_0.118.3_Dev_Gui.apk) o [haz clic aquí y descarga versión de Play Store](https://play.google.com/store/apps/details?id=com.termux) si la versión de MediaFire anterior no funciona._
@@ -97,13 +97,13 @@ cd /sdcard
 4 - Clona el repositorio.
 
 ```sh
-git clone https://github.com/guiireal/takeshi-bot.git
+    git clone https://github.com/bronxys/Takeshi-es.git
 ```
 
 5 - Entra en la carpeta que fue clonada.
 
 ```sh
-cd takeshi-bot
+cd Takeshi-es
 ```
 
 6 - Habilita permisos de lectura y escritura (haz solo 1x este paso).
@@ -153,16 +153,89 @@ export const OWNER_LID = "12345678901234567890@lid";
 npm start
 ```
 
-## Instalación en las principales hosts de Brasil
+## Instalación en Bronxys
 
-Las principales hosts ya ofrecen Takeshi como **bot predeterminado**, no siendo necesario ninguna instalación manual!
+Bronxys ofrece Takeshi como **bot predeterminado**, por lo que no es necesaria ninguna instalación manual.
 
-**Hosts soportadas**:
+**Host soportada**:
 
 | Bronxys |
 |---------|
 | [Grupo oficial](https://chat.whatsapp.com/J5OewHvweK1Kf7RGXAwIYM) |
 | [![Bronxys](./assets/images/bronxys.png)](https://bronxyshost.com/) |
+
+## Instalación en Windows
+
+1 - Abre PowerShell como administrador.
+
+Haz clic con el botón derecho en el menú Inicio y elige `Terminal (Administrador)` o `Windows PowerShell (Administrador)`.
+
+2 - Instala Git, Node.js 24.x.x o superior y FFmpeg.
+
+Si utilizas Windows 10 o Windows 11 con `winget`, ejecuta:
+
+```powershell
+winget install --id Git.Git -e
+winget install --id OpenJS.NodeJS -e
+winget install --id Gyan.FFmpeg -e
+```
+
+Si algún comando no funciona, instala manualmente:
+
+- Git: [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)
+- Node.js 24.x.x o superior: [https://nodejs.org/en](https://nodejs.org/en)
+- FFmpeg: [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)
+
+3 - Cierra y abre PowerShell nuevamente para actualizar el `PATH`.
+
+4 - Verifica las instalaciones:
+
+```powershell
+node -v
+npm -v
+git --version
+ffmpeg -version
+```
+
+El comando `node -v` debe mostrar una versión `v24.x.x`.
+
+5 - Elige una carpeta para colocar los archivos del bot. En este ejemplo usaremos el Escritorio:
+
+```powershell
+cd $env:USERPROFILE\Desktop
+```
+
+6 - Clona el repositorio:
+
+```powershell
+git clone https://github.com/bronxys/Takeshi-es.git
+```
+
+7 - Entra en la carpeta clonada:
+
+```powershell
+cd Takeshi-es
+```
+
+8 - Instala las dependencias:
+
+```powershell
+npm install
+```
+
+9 - Ejecuta el bot:
+
+```powershell
+npm start
+```
+
+10 - El bot solicitará tu número de teléfono. Escríbelo exactamente como aparece en WhatsApp y utiliza solo números.
+
+11 - Informa el código de vinculación en WhatsApp desde `dispositivos conectados`.
+
+12 - Espera la conexión y presiona `CTRL + C` en PowerShell para detener el bot.
+
+Después, configura el archivo `config.js` dentro de la carpeta `src` y vuelve a iniciar el bot con `npm start`.
 
 ## Instalación en VPS (Debian/Ubuntu)
 
@@ -196,16 +269,16 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
 ```
 
-6 - Instala la versión 22 más reciente de Node.js.
+6 - Instala la versión 24 más reciente de Node.js.
 
 ```sh
-nvm install 22
+nvm install 24
 ```
 
 7 - Verifica si la versión fue instalada y está activa.
 
 ```sh
-node -v # Debe mostrar la versión 22
+node -v # Debe mostrar la versión 24
 ```
 
 8 - Verifica si npm fue instalado junto.
@@ -223,13 +296,13 @@ npm install pm2 -g
 10 - Clona el repositorio del bot donde desees.
 
 ```sh
-git clone https://github.com/guiireal/takeshi-bot.git
+git clone https://github.com/bronxys/Takeshi-es.git
 ```
 
 11 - Entra en la carpeta clonada.
 
 ```sh
-cd takeshi-bot
+cd Takeshi-es
 ```
 
 12 - Digita el siguiente comando.
@@ -342,16 +415,14 @@ Obtén tu API Key en: [https://linker.devgui.dev](https://linker.devgui.dev)
 
 | Función | Contexto | ¿Requiere Spider X API? |
 | ------------ | --- | --- |
-| Activar el bot en el grupo | Dueño | ❌ |
 | Cambiar imagen del bot | Dueño | ❌ |
 | Desactivar el bot en el grupo | Dueño | ❌ |
 | Ejecutar comandos de infraestructura | Dueño | ❌ |
+| Activar el bot en el grupo | Dueño | ❌ |
 | Modificar el prefijo por grupo | Dueño | ❌ |
 | Obtener el ID del grupo | Dueño | ❌ |
 | Abrir grupo | Admin | ❌ |
-| Activar/desactivar auto responder | Admin | ❌ |
-| Activar/desactivar bienvenidas | Admin | ❌ |
-| Activar/desactivar salida de grupo | Admin | ❌ |
+| Programar mensaje | Admin | ❌ |
 | Anti audio | Admin | ❌ |
 | Anti documento | Admin | ❌ |
 | Anti evento | Admin | ❌ |
@@ -361,52 +432,75 @@ Obtén tu API Key en: [https://linker.devgui.dev](https://linker.devgui.dev)
 | Anti sticker | Admin | ❌ |
 | Anti video | Admin | ❌ |
 | Banear miembros | Admin | ❌ |
-| Cambiar nombre del grupo | Admin | ❌ |
-| Cerrar grupo | Admin | ❌ |
 | Eliminar mensajes | Admin | ❌ |
+| Cerrar grupo | Admin | ❌ |
 | Gestión de mensajes del auto-responder | Admin | ❌ |
+| Activar/desactivar auto responder | Admin | ❌ |
+| Activar/desactivar bienvenidas | Admin | ❌ |
+| Activar/desactivar salida de grupo | Admin | ❌ |
 | Limpiar chat | Admin | ❌ |
 | Marcar todos | Admin | ❌ |
+| Cambiar nombre del grupo | Admin | ❌ |
 | Mute/unmute | Admin | ❌ |
 | Obtener el link del grupo | Admin | ❌ |
-| Programar mensaje | Admin | ❌ |
 | Revelar | Admin | ❌ |
 | Solo admins | Admin | ❌ |
 | Ver saldo | Admin | ❌ |
 | Borrar imagen | Miembro | ❌ |
 | Buscar CEP | Miembro | ❌ |
-| Búsqueda Google | Miembro | ✅ |
-| Búsqueda YT | Miembro | ✅ |
+| Enviar botones | Miembro | ✅ |
+| Enviar lista | Miembro | ✅ |
+| Enviar carrusel | Miembro | ✅ |
 | Canvas Bolsonaro | Miembro | ✅ |
 | Canvas cadena | Miembro | ✅ |
 | Canvas invertir | Miembro | ✅ |
 | Canvas RIP | Miembro | ✅ |
 | Comandos de diversión/juegos | Miembro |❌ |
-| Descarga Instagram | Miembro | ✅ |
-| Descarga vídeo TikTok | Miembro | ✅ |
 | Espejar imagen | Miembro | ❌ |
 | Fake chat | Miembro | ❌ |
+| Sticker animado para GIF | Miembro | ✅ |
+| Sticker de texto animado | Miembro | ✅ |
 | Generación de imágenes con IA | Miembro | ✅ |
 | Generar link | Miembro | ❌ |
 | Google Gemini | Miembro | ✅ |
+| Búsqueda Google | Miembro | ✅ |
 | GPT-5 Mini | Miembro | ✅ |
-| Imagen blanco/negro | Miembro | ❌ |
 | Imagen con contraste | Miembro | ❌ |
 | Imagen IA Flux | Miembro | ✅ |
 | Imagen pixelada | Miembro | ❌ |
+| Imagen blanco/negro | Miembro | ❌ |
+| Descarga Instagram | Miembro | ✅ |
 | Ping | Miembro | ❌ |
-| Renombrar sticker | Miembro | ❌ |
 | Reproducir audio | Miembro | ✅ |
 | Reproducir vídeo | Miembro | ✅ |
+| Renombrar sticker | Miembro | ❌ |
 | Sticker | Miembro | ❌ |
-| Sticker a imagen | Miembro | ❌ |
-| Sticker animado para GIF | Miembro | ✅ |
-| Sticker de texto animado | Miembro | ✅ |
 | Sticker IA  | Miembro | ✅ |
+| Sticker a imagen | Miembro | ❌ |
+| Descarga vídeo TikTok | Miembro | ✅ |
 | YT MP3 | Miembro | ✅ |
 | YT MP4 | Miembro | ✅ |
+| Búsqueda YT | Miembro | ✅ |
 
 ## Funcionalidades de envio (Exemplos)
+
+### 🔘 Ejemplos de botones
+
+| Comando | Función | Descripción | Características |
+|---------|---------|-------------|-----------------|
+| `/enviar-botoes` | Enviar botones | Demuestra botones simples, de respuesta rápida e interactivos | Incluye botones que activan otros ejemplos |
+
+### 📋 Ejemplos de listas
+
+| Comando | Función | Descripción | Características |
+|---------|---------|-------------|-----------------|
+| `/enviar-lista` | Enviar lista | Demuestra mensajes en formato de lista | Incluye secciones, opciones y acciones interactivas |
+
+### 🎠 Ejemplos de carrusel
+
+| Comando | Función | Descripción | Características |
+|---------|---------|-------------|-----------------|
+| `/enviar-carrossel` | Enviar carrusel | Demuestra mensajes con tarjetas deslizables | Incluye imágenes y acciones en tarjetas |
 
 ### 🎵 Ejemplos de audio
 
@@ -630,7 +724,7 @@ export async function customMiddleware({ type, commonFunctions }) {
 
 ### 📁 Localización de los comandos de ejemplo
 
-Todos los comandos de ejemplo están localizados en: `src/commands/member/exemplos/`
+Todos los comandos de ejemplo están localizados en: `src/commands/member/samples/`
 
 ### 🛠️ Funciones disponibles
 
@@ -762,7 +856,7 @@ Todos los archivos de ejemplo son almacenados en `assets/samples/`:
   - 📁 commands ➔ _carpeta donde están los comandos_
     - 📁 admin ➔ _carpeta donde están los comandos administrativos_
     - 📁 member ➔ _carpeta donde están los comandos generales (todos podrán utilizar)_
-      - 📁 exemplos ➔ _carpeta con 24 comandos de ejemplo_
+      - 📁 samples ➔ _carpeta con los comandos de ejemplo_
     - 📁 owner ➔ _carpeta donde están los comandos de dueño (grupo y bot)_
     - 📝🤖-como-criar-comandos.js ➔ _archivo de ejemplo de cómo crear un comando_
   - 📁 errors ➔ _clases de errores usadas en los comandos_
@@ -775,7 +869,7 @@ Todos los archivos de ejemplo son almacenados en `assets/samples/`:
   - 📝 loader.js ➔ _script de carga de funciones_
   - 📝 menu.js ➔ _menu del bot_
   - 📝 messages.js ➔ _archivos de mensajes de bienvenidas y salida_
-  - 📝 test.js ➔ _script de pruebas_
+  - 📁 test/ ➔ _suite de pruebas automatizadas_
 - 📝 .gitignore ➔ _archivo para no subir ciertas carpetas en GitHub_
 - 📝 ⚡-cases-estao-aqui.js ➔ _easter egg_
 - 📝 CONTRIBUTING.md ➔ _guía de contribución_
@@ -789,10 +883,6 @@ Todos los archivos de ejemplo son almacenados en `assets/samples/`:
 ## Actualizar el bot
 
 Ejecuta `bash update.sh`
-
-## Pruebas
-
-Ejecuta `npm run test:all`
 
 ## Errores comunes
 
