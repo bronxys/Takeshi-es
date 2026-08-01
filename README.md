@@ -100,7 +100,7 @@ cd /sdcard
 4 - Clona el repositorio.
 
 ```sh
-    git clone https://github.com/bronxys/Takeshi-es.git
+git clone https://github.com/bronxys/Takeshi-es.git
 ```
 
 5 - Entra en la carpeta que fue clonada.
